@@ -1,0 +1,9 @@
+{
+  "generator-node": {
+    "promptValues": {
+      "authorName": "all4site",
+      "authorEmail": "info@all4site.com.ua",
+      "authorUrl": ""
+    }
+  }
+}
