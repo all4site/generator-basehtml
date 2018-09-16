@@ -36,8 +36,8 @@ module.exports = class extends Generator {
     );
 
     this.fs.copy(
-      this.templatePath('*.jade'),
-      this.destinationPath('app/index.jade')
+      this.templatePath('*.pug'),
+      this.destinationPath('app/')
     );
     this.fs.copy(
       this.templatePath('js/main.js'),
@@ -69,12 +69,12 @@ module.exports = class extends Generator {
   }
 
   installingLodash() {
-    this.npmInstall(['gulp', 'browser-sync', 'gulp-sass', 'gulp-csso', 'bower', 'gulp-jade', 'gulp-autoprefixer', 'gulp-concat', 'gulp-uglifyjs', 'gulp-notify', 'del', 'gulp-tinypng', 'gulp-if', 'gulp-wiredep','gulp-wait'], {
+    this.npmInstall(['bower', 'browser-sync', 'del', 'gulp', 'gulp-autoprefixer', 'gulp-concat', 'gulp-csso', 'gulp-if', 'gulp-pug', 'gulp-newer', 'gulp-notify', 'gulp-sass', 'gulp-tinypng', 'gulp-uglify', 'gulp-uncss', 'gulp-useref', 'gulp-wait', 'gulp-wiredep'
+		], {
+			'save-dev': true
+		});
 
-
-      'save-dev': true
-    });
-    this.bowerInstall(['jquery', 'all4site-fontawesome', 'animate.css',  'all4site-normilize'],  {
+    this.bowerInstall(['jquery', 'all4site-fontawesome', 'animate.css', 'all4site-normalize','all4site-jqueryui'], {
       'save': true
 
     });

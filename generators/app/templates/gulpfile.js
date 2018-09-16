@@ -2,10 +2,10 @@ var gulp = require('gulp'),
 	browserSync = require('browser-sync'),
 	sass = require('gulp-sass'),
 	csso = require('gulp-csso'),
-	jade = require('gulp-jade'),
+	jade = require('gulp-pug'),
 	autoprefixer = require('gulp-autoprefixer'),
 	concat = require('gulp-concat'),
-	uglify = require('gulp-uglifyjs'),
+	uglify = require('gulp-uglify'),
 	notify = require('gulp-notify'),
 	del = require('del'),
 	gulpif = require('gulp-if'),
@@ -39,7 +39,7 @@ gulp.task('tiny', function () {
 });
 
 gulp.task('combine', function () {
-	return gulp.src(['app/*.jade','!app/*.jade'])
+	return gulp.src(['app/*.pug','!app/*.pug'])
 		.pipe(jade({
 			pretty: true
 		}))
@@ -74,7 +74,7 @@ gulp.task('sass', function () {
 });
 
 gulp.task('jade', function () {
-	gulp.src(['app/*.jade', '!app/_*.jade'])
+	gulp.src(['app/*.pug', '!app/_*.pug'])
 		.pipe(jade({
 			pretty: true
 		}))
@@ -95,7 +95,7 @@ gulp.task('browser-sync', function () {
 });
 
 gulp.task('bower', function () {
-	gulp.src(['app/_header.jade', 'app/_footer.jade'])
+	gulp.src(['app/_header.pug', 'app/_footer.pug'])
 		.pipe(wiredep({
 			diewctory: 'app/wendor'
 		}))
@@ -105,9 +105,9 @@ gulp.task('bower', function () {
 		}))
 })
 
-gulp.task('default', ['browser-sync', 'jade', 'bower'], function () {
+gulp.task('default', ['browser-sync', 'jade', 'bower','sass'], function () {
 	gulp.watch('app/sass/*.sass', ['sass']);
-	gulp.watch('app/*.jade', ['jade']);
+	gulp.watch('app/*.pug', ['jade']);
 	gulp.watch('bower.json', ['bower']);
 	gulp.watch('app/js/**/*.js', browserSync.reload);
 	gulp.watch('app/*.html', browserSync.reload);
